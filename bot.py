@@ -10,7 +10,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-TOKEN = "TU_TOKEN_AQUI"
+TOKEN = 7436710622:AAHZyaEt6HSIP5MNKNFJbAZVZXLx36VPlbM
 COSTA_RICA_TZ = pytz.timezone("America/Costa_Rica")
 
 # Comando de ejemplo
@@ -23,7 +23,8 @@ def main():
     job_queue.start()  # Inicia el JobQueue
 
     # Crear la aplicación y pasarle el JobQueue
-    app = ApplicationBuilder().token(TOKEN).job_queue(job_queue).build()
+   app = ApplicationBuilder().token(7436710622:AAHZyaEt6HSIP5MNKNFJbAZVZXLx36VPlbM).build()
+   app.job_queue._scheduler.timezone = COSTA_RICA_TZ
 
     # Registrar handlers
     app.add_handler(CommandHandler("start", start))
@@ -33,3 +34,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
