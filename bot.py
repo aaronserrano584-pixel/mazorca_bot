@@ -1,32 +1,35 @@
 import logging
 from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, JobQueue
-import pytz  # Necesario para zonas horarias compatibles con APScheduler
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+import pytz
+from tzlocal import get_localzone_name  # Detecta la zona horaria local
 
-# Configurar logging
+# Logging
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
 )
 
-# Token de tu bot
 TOKEN = "TU_TOKEN_AQUI"
 
-# Comando de prueba /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text("¡Hola! Bot funcionando correctamente.")
+    await update.message.reply_text("¡Hola! Bot funcionando correctamente con zona horaria local.")
 
 def main():
-    # Crear JobQueue con timezone de pytz
-    job_queue = JobQueue(timezone=pytz.timezone("UTC"))
+    # Crear la aplicación
+    app = ApplicationBuilder().token(TOKEN).build()
 
-    # Crear la aplicación pasándole la JobQueue ya configurada
-    app = ApplicationBuilder().token(TOKEN).job_queue(job_queue).build()
+    # Detectar zona horaria local compatible con pytz
+    local_timezone_name = get_localzone_name()  # Ej: "America/Mexico_City"
+    local_timezone = pytz.timezone(local_timezone_name)
+
+    # Configurar JobQueue con zona horaria local
+    app.job_queue._scheduler.timezone = local_timezone
 
     # Agregar comandos
     app.add_handler(CommandHandler("start", start))
 
-    # Iniciar el bot
+    # Ejecutar bot
     app.run_polling()
 
 if __name__ == "__main__":
