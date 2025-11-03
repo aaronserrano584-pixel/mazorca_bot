@@ -1,37 +1,27 @@
-# bot.py
-import logging
+import asyncio
 from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, JobQueue
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 import pytz
-
-# Logging
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
-)
-logger = logging.getLogger(__name__)
+from datetime import datetime
 
 TOKEN = 7436710622:AAHZyaEt6HSIP5MNKNFJbAZVZXLx36VPlbM
 COSTA_RICA_TZ = pytz.timezone("America/Costa_Rica")
 
-# Comando de ejemplo
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("¡Hola! Bot corriendo correctamente en hora de Costa Rica.")
+    await update.message.reply_text("¡Hola! Bot corriendo en Costa Rica")
 
-def main():
-    # Crear JobQueue con zona horaria compatible
-    job_queue = JobQueue(timezone=COSTA_RICA_TZ)
-    job_queue.start()  # Inicia el JobQueue
+async def job():
+    while True:
+        now = datetime.now(COSTA_RICA_TZ)
+        if now.hour == 9 and now.minute == 0:
+            print("¡Ejecutando job diario!")
+        await asyncio.sleep(60)
 
-    # Crear la aplicación y pasarle el JobQueue
-   app = ApplicationBuilder().token(7436710622:AAHZyaEt6HSIP5MNKNFJbAZVZXLx36VPlbM).build()
-   app.job_queue._scheduler.timezone = COSTA_RICA_TZ
-
-    # Registrar handlers
+async def main():
+    app = ApplicationBuilder().token(TOKEN).build()
     app.add_handler(CommandHandler("start", start))
-
-    # Ejecutar bot
-    app.run_polling()
+    asyncio.create_task(job())
+    await app.run_polling()
 
 if __name__ == "__main__":
-    main()
-
+    asyncio.run(main())
