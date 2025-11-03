@@ -1,4 +1,5 @@
 import os
+import pytz
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, MessageHandler, filters
 
@@ -13,13 +14,16 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Lista de comandos disponibles:\n/start - iniciar el bot\n/help - ayuda")
 
-# Echo de mensajes de texto
+# Echo de mensajes
 async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(f"Recibido: {update.message.text}")
 
 def main():
-    # Crear aplicación del bot
+    # Crear aplicación del bot con JobQueue usando pytz
     app = ApplicationBuilder().token(TOKEN).build()
+    
+    # Forzar la zona horaria del JobQueue
+    app.job_queue._scheduler.timezone = pytz.timezone("UTC")
 
     # Registrar comandos
     app.add_handler(CommandHandler("start", start))
