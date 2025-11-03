@@ -13,8 +13,8 @@ logging.basicConfig(
 # Configuración del token
 TOKEN = os.getenv('7436710622:AAHZyaEt6HSIP5MNKNFJbAZVZXLx36VPlbM')
 
-# Configurar zona horaria
-TIMEZONE = pytz.timezone("America/Costa_Rica")  # O usa tu zona horaria local, por ejemplo: pytz.timezone('America/Mexico')
+# Configurar zona horaria de Costa Rica
+TIMEZONE = pytz.timezone('America/Costa_Rica')
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("¡Hola! Soy tu bot.")
