@@ -1,0 +1,6 @@
+Bienvenid@ {USERNAME},
+
+Por favor lee las reglas {RULES}, evita ser expulsado y bloqueado permanentemente.
+Cualquier anomalía repórtala al admin.
+
+Disfruta mucho del grupo ☺️
