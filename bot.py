@@ -13,9 +13,8 @@ logging.basicConfig(
 # Configuración del token
 TOKEN = os.getenv('7436710622:AAHZyaEt6HSIP5MNKNFJbAZVZXLx36VPlbM')
 
-# Configurar zona horaria
-TIMEZONE = pytz.timezone('UTC-6')
-
+# Configurar zona horaria UTC
+TIMEZONE = pytz.timezone('CST-6')
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("¡Hola! Soy tu bot.")
 
