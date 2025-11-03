@@ -1,5 +1,4 @@
-import logging
-from telegram import Update
+from telegram import Bot
 from telegram.ext import Application, CommandHandler, ContextTypes
 
 # Configuración básica
@@ -14,6 +13,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("¡Hola! Soy tu bot.")
 
 def main():
+    # Crear la aplicación con el token directamente
     application = Application.builder().token=TOKEN.build()
     
     # Agregar comandos
