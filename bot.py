@@ -10,7 +10,7 @@ from apscheduler.triggers.cron import CronTrigger
 # Cargar el token desde variable de entorno
 TOKEN = os.getenv("7436710622:AAHZyaEt6HSIP5MNKNFJbAZVZXLx36VPlbM")
 if not TOKEN:
-    raise ValueError("Debes configurar la variable de entorno TELEGRAM_BOT_TOKEN con tu token.")
+    raise ValueError("7436710622:AAHZyaEt6HSIP5MNKNFJbAZVZXLx36VPlbM")
 
 # Zona horaria de Costa Rica
 COSTA_RICA_TZ = pytz.timezone("America/Costa_Rica")
@@ -26,7 +26,7 @@ async def tarea_programada(context: ContextTypes.DEFAULT_TYPE):
 
 async def main():
     # Crear la aplicación del bot
-    app = ApplicationBuilder().token(TOKEN).build()
+    app = ApplicationBuilder().token("7436710622:AAHZyaEt6HSIP5MNKNFJbAZVZXLx36VPlbM").build()
 
     # Registrar comando /start
     app.add_handler(CommandHandler("start", start))
@@ -46,3 +46,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
