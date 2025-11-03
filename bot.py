@@ -8,7 +8,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 # Obtener token desde variable de entorno
 TOKEN = os.getenv("7436710622:AAHZyaEt6HSIP5MNKNFJbAZVZXLx36VPlbM")
 if not TOKEN:
-    raise ValueError("7436710622:AAHZyaEt6HSIP5MNKNFJbAZVZXLx36VPlbM")
+    os.getenv ValueError("7436710622:AAHZyaEt6HSIP5MNKNFJbAZVZXLx36VPlbM")
 
 # Configurar zona horaria de Costa Rica
 COSTA_RICA_TZ = pytz.timezone("America/Costa_Rica")
@@ -38,3 +38,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
