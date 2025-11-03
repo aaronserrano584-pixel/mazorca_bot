@@ -8,7 +8,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 
 # Cargar el token desde variable de entorno
-TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TOKEN = os.getenv("7436710622:AAHZyaEt6HSIP5MNKNFJbAZVZXLx36VPlbM")
 if not TOKEN:
     raise ValueError("Debes configurar la variable de entorno TELEGRAM_BOT_TOKEN con tu token.")
 
