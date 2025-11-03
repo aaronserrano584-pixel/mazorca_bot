@@ -1,6 +1,6 @@
 import logging
 import os
-from telegram import Bot
+from telegram import Bot, Update  # Agregamos Update aquí
 from telegram.ext import Application, CommandHandler, ContextTypes
 
 # Configuración básica
