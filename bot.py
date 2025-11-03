@@ -11,9 +11,9 @@ logging.basicConfig(
 )
 
 # Configuración del token
-TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+TOKEN = os.getenv('7436710622:AAHZyaEt6HSIP5MNKNFJbAZVZXLx36VPlbM')
 
-# Configurar zona horaria de Costa Rica
+# Configurar zona horaria
 TIMEZONE = pytz.timezone('America/Costa_Rica')
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
