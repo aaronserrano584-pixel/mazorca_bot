@@ -1,22 +1,20 @@
-import os
-from telegram import Bot, Update
-from telegram.ext import Updater, CommandHandler, CallbackContext
+from telegram import Update, Bot
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-TOKEN = os.getenv("BOT_TOKEN")  # Render tomará la variable de su panel
+TOKEN = "TU_BOT_TOKEN"
 
-def start(update: Update, context: CallbackContext):
-    update.message.reply_text("¡Bot iniciado correctamente!")
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Hola! Bot funcionando.")
 
 def main():
-    bot = Bot(token=TOKEN)
-    updater = Updater(bot=bot, use_context=True)
+    # Crear la aplicación del bot
+    app = ApplicationBuilder().token(TOKEN).build()
 
-    dispatcher = updater.dispatcher
-    dispatcher.add_handler(CommandHandler("start", start))
+    # Registrar comandos
+    app.add_handler(CommandHandler("start", start))
 
-    updater.start_polling()
-    updater.idle()
+    # Ejecutar el bot
+    app.run_polling()
 
 if __name__ == "__main__":
     main()
-
