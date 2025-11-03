@@ -25,7 +25,7 @@ def main():
     
     # Configurar APScheduler con la zona horaria
     application.job_queue.scheduler.configure({
-        'timezone': TIMEZONE
+        'timezone': str(TIMEZONE)  # Convertir a string
     })
     
     # Agregar comandos
