@@ -1,3 +1,5 @@
+import logging
+import os
 from telegram import Bot
 from telegram.ext import Application, CommandHandler, ContextTypes
 
@@ -7,14 +9,15 @@ logging.basicConfig(
     level=logging.INFO
 )
 
-TOKEN = "7436710622:AAHZyaEt6HSIP5MNKNFJbAZVZXLx36VPlbM"
+# Configuración del token
+TOKEN = os.getenv('7436710622:AAHZyaEt6HSIP5MNKNFJbAZVZXLx36VPlbM')
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("¡Hola! Soy tu bot.")
 
 def main():
     # Crear la aplicación con el token directamente
-    application = Application.builder().token=TOKEN.build()
+    application = Application.builder().token=TOKEN
     
     # Agregar comandos
     application.add_handler(CommandHandler("start", start))
